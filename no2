@@ -1,0 +1,39 @@
+#include "monty.h"
+/**
+ * push - inserts a new element on stack/queue
+ * @stack: head of stack
+ * @line_number: number of the line
+ */
+void push(stack_t **stack, unsigned int line_number)
+{
+	stack_t *new;
+	int n = atoi(op_arg);
+	/*stack_t *start = NULL;*/
+
+	if (op_arg == NULL || (n == 0 && strcmp(op_arg, "0") != 0))
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		fprintf(stderr, "error\n");
+		exit(0);
+	}
+	new->n = atoi(op_arg);
+	if (!*stack)
+	{
+		new->prev = NULL;
+		new->next = NULL;
+		/*start = new;*/
+		*stack = new;
+	}
+	else
+	{
+		(*stack)->next = new;
+		new->next = NULL;
+		new->prev = *stack;
+		*stack = new;
+	}
+}

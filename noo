@@ -1,0 +1,78 @@
+#include "monty.h"
+/**
+ * new_node - adds a node at top of stack
+ * @stack: top of stack
+ * @n: value to add
+ * Return: new node
+ 
+stack_t *new_node(stack_t **stack, int n)
+{
+	stack_t *new;
+
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		error(NULL, 4);
+	}
+	new->n = n;
+	 * if (*stack)
+		(*stack)->prev = new;
+	new->n = n;
+	new->next = NULL;
+	new->prev = ;
+	*stack = new;
+	
+	if (!*stack)
+	{
+		new->prev = NULL;
+		new->next = NULL;
+		*stack = new;
+	}
+	else
+	{
+		(*stack)->prev = new;
+		new->next = *stack;
+		new->prev = NULL;
+		*stack = new;
+	}
+
+	new->next = *stack;
+	new->prev = NULL;
+	if (*stack)
+		(*stack)->prev = new;
+	*stack = new;
+	printf("%d\n", new->n);
+	return (new);
+}
+*/
+/**
+ * push - inserts a new element on stack/queue
+ * @stack: head of stack
+ * @line_number: number of the line
+ */
+void push(stack_t **stack, unsigned int line_number)
+{
+	stack_t *new;
+	int n;
+	/*stack_t *start = NULL;*/
+
+	if (op_arg == NULL || (atoi(op_arg) == 0 && strcmp(op_arg, "0") != 0))
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	n = atoi(op_arg);
+	printf("%d\n", n);
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		error(NULL, 4);
+	}
+	new->n = n;
+	new->next = *stack;
+	new->prev = NULL;
+	if (*stack)
+		(*stack)->prev = new;
+	*stack = new;
+	printf("%d\n", new->n);
+}
